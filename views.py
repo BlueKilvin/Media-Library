@@ -1,4 +1,4 @@
-"""Views for the ``media_library`` app."""
+'''Views for the ``media_library`` app.'''
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.http import Http404
@@ -20,7 +20,7 @@ from . import models
 from . import forms
 
 
-# Mixins ======================================================================
+#==== Mixins ====
 
 class MediaItemImageCRUDViewMixin(object):
     form_class = forms.MediaItemImageForm
@@ -87,10 +87,10 @@ class MediaItemVideoCRUDViewMixin(CreateView):
         return reverse('medialibrary_edit')
 
 
-# Views =======================================================================
+# ===== Views =====
 
 class MediaLibraryEditView(AjaxResponseMixin, DetailView):
-    """A view to edit media details of a user on its profile."""
+    '''A view to edit media details of a user on its profile.'''
     template_name = 'media_library/medialibrary_edit.html'
     model = models.MediaLibrary
 
@@ -133,26 +133,26 @@ class MediaItemDeleteView(DeleteView):
 
 
 class MediaItemImageCreateView(MediaItemImageCRUDViewMixin, CreateView):
-    """View to create meta data for a media item."""
+    '''View to create meta data for a media item.'''
 
 
 class MediaItemImageUpdateView(MediaItemImageCRUDViewMixin, UpdateView):
-    """View to update meta data for a media item."""
+    '''View to update meta data for a media item.'''
 
     def get_object(self, queryset=None):
         return self.image.media_items.all()[0]
 
 
 class MediaItemVideoCreateView(MediaItemVideoCRUDViewMixin, CreateView):
-    """View to create meta data for a media item."""
+    '''View to create meta data for a media item.'''
 
 
 class MediaItemVideoUpdateView(MediaItemVideoCRUDViewMixin, UpdateView):
-    """View to update meta data for a media item."""
+    '''View to update meta data for a media item.'''
 
 
 class MediaLibraryUploadView(TemplateView):
-    """View where users upload their pictures."""
+    '''View where users upload their pictures.'''
     template_name = "media_library/medialibrary_upload.html"
 
     @method_decorator(login_required)

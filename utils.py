@@ -1,4 +1,4 @@
-"""Utilities for the ``media_library`` app."""
+'''Utilities for the ``media_library`` app.'''
 import re
 VIMEO_PATTERN = re.compile('(?:https?://)?(?:www.)?(vimeo)(?:pro)?.com/(?:.*/)?(\d+)')  # NOQA
 YOUTUBE_PATTERN = re.compile(
@@ -8,7 +8,7 @@ VIDEO_PATTERNS = [VIMEO_PATTERN, YOUTUBE_PATTERN]
 
 
 def get_video_id(url):
-    """Returns the video ID from a vimeo or YouTube URL."""
+    '''Returns the video ID from a vimeo or YouTube URL.'''
     video_id = ''
     if not url:
         return ''
@@ -20,7 +20,7 @@ def get_video_id(url):
 
 
 def validate_video_url(url):
-    """Validates, where the video was from."""
+    '''Validates, where the video was from.'''
     for pattern in VIDEO_PATTERNS:
         result = pattern.search(url)
         if result is not None:

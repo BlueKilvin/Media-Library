@@ -1,4 +1,4 @@
-"""Forms for the ``media_library`` app."""
+'''Forms for the ``media_library`` app.'''
 from django.utils.translation import get_language, ugettext_lazy as _
 
 from hvad.forms import TranslatableModelForm
@@ -8,7 +8,7 @@ from . import models
 
 
 class MediaItemImageForm(TaggingFormMixin, TranslatableModelForm):
-    """Form to edit and create meta data for library images."""
+    '''Form to edit and create meta data for library images.'''
 
     language = get_language()
     tag_field = {

@@ -1,4 +1,4 @@
-"""URLs for the ``media_library`` app."""
+'''URLs for the ``media_library`` app.'''
 from django.conf.urls import patterns, url
 
 from . import views

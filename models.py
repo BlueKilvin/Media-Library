@@ -1,4 +1,4 @@
-"""Models for the ``media_library`` app."""
+'''Models for the ``media_library`` app.'''
 from django.contrib.contenttypes import generic
 from django.core.urlresolvers import reverse
 from django.core.exceptions import ValidationError
@@ -11,13 +11,13 @@ from .utils import get_video_id, validate_video_url
 
 
 class MediaLibrary(models.Model):
-    """
+    '''
     General collection of ``MediaItem`` objects for a user.
 
     :user: FK to the ``User`` object this collection belongs to.
     :user_media_images: a generic relation to user media images of this user
 
-    """
+    '''
 
     user = models.ForeignKey(
         'auth.User',
@@ -36,16 +36,16 @@ class MediaLibrary(models.Model):
         return reverse('showreel_edit')
 
     def media_images(self):
-        """Returns all image items of a library"""
+        '''Returns all image items of a library'''
         return self.media_items.filter(image__isnull=False)
 
     def media_videos(self):
-        """Returns all video items of a library"""
+        '''Returns all video items of a library'''
         return self.media_items.filter(video__isnull=False)
 
 
 class MediaItem(TranslatableModel):
-    """
+    '''
     Stores video URLs and references ``UserMediaImage`` and extends them with
     some additional meta data.
 
@@ -59,7 +59,7 @@ class MediaItem(TranslatableModel):
     translatable:
     :location: The place where this image or video was taken
 
-    """
+    '''
 
     library = models.ForeignKey(
         MediaLibrary,
@@ -108,12 +108,12 @@ class MediaItem(TranslatableModel):
         return 'Video of "{0}"'.format(self.library.user)
 
     def clean(self):
-        """
+        '''
         Checks if the video has the correct format.
 
         Currently supported are vimeo and youtube.
 
-        """
+        '''
         if self.video and self.get_video_origin() is None:
             raise ValidationError(_(
                 'The video URL was not in a valid Vimeo or YouTube format.'
@@ -123,7 +123,7 @@ class MediaItem(TranslatableModel):
         return validate_video_url(self.video)
 
     def get_user(self):
-        """Returns a user for the ``django-multilingual-tags`` form API."""
+        '''Returns a user for the ``django-multilingual-tags`` form API.'''
         return self.library.user
 
     def delete(self, using=None):
@@ -134,5 +134,5 @@ class MediaItem(TranslatableModel):
 
     @property
     def video_id(self):
-        """Returns the video ID from the URL."""
+        '''Returns the video ID from the URL.'''
         return get_video_id(self.video)
