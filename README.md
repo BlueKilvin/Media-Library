@@ -1,5 +1,5 @@
 # Media Library
-A web-based media library developed using python.
+A web-based media library developed using Python.
 
 This was my try at recreating a similar project I've done in university.
 
@@ -11,5 +11,4 @@ This was my try at recreating a similar project I've done in university.
 * JavaScript
 * Node.JS
 
-### Credits:
-HTML templates taken from King's Django media library project.
+
